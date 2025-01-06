@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+training_topic_manager,training_topic_manager,model_training_topic,group_training_manager,1,1,1,1
+training_session_manager,training_session_manager,model_training_session,group_training_manager,1,1,1,1
+training_attendee_manager,training_attendee_manager,model_training_attendee,group_training_manager,1,1,1,1
+training_topic_user,training_topic_user,model_training_topic,base.group_user,1,0,0,0
+training_session_user,training_session_user,model_training_session,base.group_user,1,1,0,0
+training_attendee_user,training_attendee_user,model_training_attendee,base.group_user,1,0,0,0

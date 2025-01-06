@@ -1,0 +1,53 @@
+<odoo>
+    <!-- Actions -->
+    <record id="action_training_topics" model="ir.actions.act_window">
+        <field name="name">Training Topics</field>
+        <field name="res_model">training.topic</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first training topic!
+            </p>
+            <p>
+                Create different topics for training sessions.
+            </p>
+        </field>
+    </record>
+
+    <record id="action_training_sessions" model="ir.actions.act_window">
+        <field name="name">Training Sessions</field>
+        <field name="res_model">training.session</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Schedule your first training session!
+            </p>
+            <p>
+                Create and manage training sessions.
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu Items -->
+    <menuitem id="menu_training_root" 
+              name="Training" 
+              web_icon="employee_training,static/description/icon.png"
+              sequence="50"/>
+
+    <menuitem id="menu_training_management" 
+              name="Training Management"
+              parent="menu_training_root" 
+              sequence="10"/>
+
+    <menuitem id="menu_training_topics" 
+              name="Topics"
+              parent="menu_training_management"
+              action="action_training_topics" 
+              sequence="10"/>
+
+    <menuitem id="menu_training_sessions" 
+              name="Sessions"
+              parent="menu_training_management"
+              action="action_training_sessions" 
+              sequence="20"/>
+</odoo>

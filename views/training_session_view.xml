@@ -1,0 +1,65 @@
+<odoo>
+    <!-- Tree/List View -->
+    <record id="view_training_session_tree" model="ir.ui.view">
+        <field name="name">training.session.tree</field>
+        <field name="model">training.session</field>
+        <field name="arch" type="xml">
+            <tree string="Training Sessions" decoration-info="state=='draft'" decoration-success="state=='done'">
+                <field name="name"/>
+                <field name="topic_id"/>
+                <field name="instructor_id"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+                <field name="seat_limit"/>
+                <field name="state" widget="badge" decoration-info="state == 'draft'" decoration-success="state == 'done'" decoration-warning="state == 'open'"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_training_session_form" model="ir.ui.view">
+        <field name="name">training.session.form</field>
+        <field name="model">training.session</field>
+        <field name="arch" type="xml">
+            <form string="Training Session">
+                <header>
+                    <button name="action_open" string="Start Session" type="object" class="oe_highlight" 
+                            invisible="state != 'draft'"
+                            groups="employee_training.group_training_manager"/>
+                    <button name="action_done" string="Complete Session" type="object" 
+                            invisible="state != 'open'"
+                            groups="employee_training.group_training_manager"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,open,done"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Session Name" class="oe_inline"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Session Details">
+                            <field name="topic_id" options="{'no_create': True}"/>
+                            <field name="instructor_id" options="{'no_create': True}"/>
+                            <field name="seat_limit"/>
+                        </group>
+                        <group string="Schedule">
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Attendees" name="attendees">
+                            <field name="attendee_ids">
+                                <tree editable="bottom">
+                                    <field name="employee_id"/>
+                                    <field name="check_in"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_session">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="session">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <div class="row mb-4">
+                            <div class="col-12 text-center">
+                                <h2>Training Session Report</h2>
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-4">
+                            <div class="col-6">
+                                <strong>Session Name:</strong>
+                                <span t-field="session.name"/>
+                                <br/>
+                                <strong>Topic:</strong>
+                                <span t-field="session.topic_id.name"/>
+                                <br/>
+                                <strong>Instructor:</strong>
+                                <span t-field="session.instructor_id.name"/>
+                            </div>
+                            <div class="col-6">
+                                <strong>Start Date:</strong>
+                                <span t-field="session.start_date"/>
+                                <br/>
+                                <strong>End Date:</strong>
+                                <span t-field="session.end_date"/>
+                                <br/>
+                                <strong>State:</strong>
+                                <span t-field="session.state"/>
+                            </div>
+                        </div>
+
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <h4>Attendees List</h4>
+                                <table class="table table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th>Employee</th>
+                                            <th>Check In</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr t-foreach="session.attendee_ids" t-as="attendee">
+                                            <td><span t-field="attendee.employee_id.name"/></td>
+                                            <td><span t-field="attendee.check_in"/></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_report_training_session" model="ir.actions.report">
+        <field name="name">Session Report</field>
+        <field name="model">training.session</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">employee_training.report_session</field>
+        <field name="report_file">employee_training.report_session</field>
+        <field name="binding_model_id" ref="model_training_session"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

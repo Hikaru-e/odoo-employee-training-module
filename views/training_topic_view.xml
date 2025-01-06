@@ -1,0 +1,49 @@
+<odoo>
+    <!-- Tree/List View -->
+    <record id="view_training_topic_tree" model="ir.ui.view">
+        <field name="name">training.topic.tree</field>
+        <field name="model">training.topic</field>
+        <field name="arch" type="xml">
+            <tree string="Training Topics">
+                <field name="name"/>
+                <field name="description"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_training_topic_form" model="ir.ui.view">
+        <field name="name">training.topic.form</field>
+        <field name="model">training.topic</field>
+        <field name="arch" type="xml">
+            <form string="Training Topic">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Topic Name" class="oe_inline"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Topic Details">
+                            <field name="description" placeholder="Enter detailed description..."/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_training_topic_search" model="ir.ui.view">
+        <field name="name">training.topic.search</field>
+        <field name="model">training.topic</field>
+        <field name="arch" type="xml">
+            <search string="Search Training Topics">
+                <field name="name"/>
+                <field name="description"/>
+                <filter string="Has Description" name="has_description" 
+                        domain="[('description', '!=', False)]"/>
+            </search>
+        </field>
+    </record>
+</odoo>
